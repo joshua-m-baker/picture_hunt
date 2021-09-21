@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class TaskComplete extends Model
 {
     use HasFactory;
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'task_id',
+        'user_id',
+        'image_path'
+    ];
 }
