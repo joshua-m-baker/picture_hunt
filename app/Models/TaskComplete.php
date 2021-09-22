@@ -19,4 +19,12 @@ class TaskComplete extends Model
         'user_id',
         'image_path'
     ];
+
+    public function task(){
+        return $this->belongsTo(Task::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -2,43 +2,44 @@
 
 @section('content')
 
+    {{-- {{$tasks}}
+    {{count($tasks)}} --}}
     <div class="container">
+        @for ($i = 0; $i < count($tasks); $i+=3)
+            <div class="row">
+                @for ($j = 0; ($j < 3 && $i + $j < count($tasks));  $j++)
+
+                    {{$tasks[$i+$j]->task->description}}
+
+                    <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="col">
+                            <label for="{{'fileUpload'.$tasks[$i+$j]->id}}">{{$tasks[$i+$j]->task->description}}</label>
+                            <input type="file" name="image" id="{{'fileUpload'.$tasks[$i+$j]->id}}" class="form-control">
+                            <input type="hidden" name="task_id" value="{{$tasks[$i+$j]->id}}">
+                            <button type="submit" class="btn btn-success">Upload</button>
+                        </div>
+                    </form>
+                @endfor
+            </div>
+        @endfor
+    </div>
+        
+
+    {{-- <div class="container">
     @for ($i = 0; $i < count($tasks); $i+=3)
-    {{-- @foreach ($tasks as $task) --}}
 
         <div class="row">
-
             @for ($j = 0; ($j < 3 && $i + $j < count($tasks));  $j++)
                 <div class="col">
-                    <p class="text-light bg-dark">
-                        {{$tasks[$j]->task_id}}
-                        {{$tasks[$j]->user_id}}
-                    </p>
-                    {{-- <img src="{{ asset('storage/'.$tasks[$j+1]->image_path) }}" class="img-fluid rounded" style="max-width: 25px">  --}}
+                    {{$tasks[$j+$i]->user->name}}
+                    <img src="{{ asset('storage/'.$tasks[$j+$i]->image_path) }}" class="img-fluid rounded"> 
+                    {{$tasks[$j+$i]->task->description}} 
                 </div>
-                col
-   
             @endfor
-           
-            {{-- <div class="col">
-                {{$tasks[$i]->task_id}}
-                {{$tasks[$i]->user_id}}
-                <img src="{{ asset('storage/'.$tasks[$i+1]->image_path) }}" class="img-fluid rounded"> 
-            </div>
-            <div class="col">
-                {{$tasks[$i]->task_id}}
-                {{$tasks[$i]->user_id}}
-                <img src="{{ asset('storage/'.$tasks[$i+2]->image_path) }}" class="img-fluid rounded"> 
-            </div> --}}
-        </div>
-
-        <div style="height: 50px">
-            TEST
-
         </div>
         
-    {{-- @endforeach --}}
     @endfor
-    </div>
+    </div> --}}
 
 @endsection

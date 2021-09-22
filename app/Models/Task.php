@@ -17,4 +17,9 @@ class Task extends Model
     protected $fillable = [
         'description'
     ];
+
+    public function taskCompletes()
+    {
+        return $this->hasMany(TaskComplete::class);
+    }
 }

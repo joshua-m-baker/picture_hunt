@@ -17,7 +17,9 @@ class UserSeeder extends Seeder
     {
         $users = [
             ["Josh Baker", "joshuabaker97@gmail.com"],
-            ["Sara Miskus", "smiskus@gmail.com"]
+            ["Sara Miskus", "smiskus@gmail.com"],
+            ["Marysa Hak", "mhak@gmail.com"],
+            ["Henry Orsborn", "horsborn@gmail.com"]
         ]; 
 
         foreach ($users as $user) {

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskCompleteController;
 use App\Http\Controllers\ImageUploadController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,8 @@ use App\Http\Controllers\ImageUploadController;
 
 Route::get('/', [TaskController::class, 'index']); #->middleware(['auth']);
 Route::get('/tasks/{id}', [TaskCompleteController::class, 'show']);
-Route::get('/tasks', [TaskCompleteController::class, 'index']);
+Route::get('/tasks', [TaskCompleteController::class, 'tasks']);
+Route::get('/gallery', [TaskCompleteController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,3 +30,7 @@ Route::get('/dashboard', function () {
 Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

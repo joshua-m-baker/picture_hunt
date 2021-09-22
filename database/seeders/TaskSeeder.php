@@ -18,6 +18,9 @@ class TaskSeeder extends Seeder
             ["Skeleton"],
             ["A fish"],
             ["The larget 17 you can find"],
+            ["Food"],
+            ["Testing 1"],
+            ["Testing 2"]
         ]; 
 
         foreach ($tasks as $task) {

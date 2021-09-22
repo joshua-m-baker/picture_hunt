@@ -23,7 +23,8 @@ class TaskCompleteSeeder extends Seeder
                 TaskComplete::create([
                     "user_id" => $userId,
                     "task_id" => $taskId,
-                    "image_path" => "S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png"
+                    "image_path" => null
+                    // "S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png"
                 ]);  
             }
         }

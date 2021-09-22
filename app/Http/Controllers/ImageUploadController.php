@@ -21,22 +21,30 @@ class ImageUploadController extends Controller
         $request->validate([
             'task_id' => 'required',
         ]);
-
+        
         if ($request->hasFile('image')) {
 
             $request->validate([
                 'image' => 'required|image|mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
 
-            $path = $request->image->store('images');
+            $path = $request->image->storePublicly('images');
 
-            // Store the record, using the new file hashname which will be it's new filename identity.
-            $product = new TaskComplete([
-                "task_id" => $request->get('task_id'),
-                "user_id" => Auth::id(),
-                "image_path" => $path
-            ]);
-            $product->save(); // Finally, save the record.
+            TaskComplete::updateOrCreate(
+                ["task_id" => $request->get('task_id'), "user_id" => Auth::id()],
+                ["image_path" => $path]
+            );
+
+            // $product = new TaskComplete([
+            //     "task_id" => $request->get('task_id'),
+            //     "user_id" => Auth::id(),
+            //     "image_path" => $path
+            // ]);
+            // $product->save(); // Finally, save the record.
+        } else {
+            // TODO return error
+            return back()
+                ->with('error', 'No image uploaded'); 
         }
 
         return back()
