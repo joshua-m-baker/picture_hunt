@@ -20,6 +20,7 @@ class CreateTaskCompletesTable extends Migration
             $table->foreignId('task_id');
             $table->foreignId('user_id');
             $table->string('image_path')->nullable();
+            $table->boolean('edited')->default(false);
         });
     }
 

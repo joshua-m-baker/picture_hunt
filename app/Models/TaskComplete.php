@@ -17,7 +17,8 @@ class TaskComplete extends Model
     protected $fillable = [
         'task_id',
         'user_id',
-        'image_path'
+        'image_path',
+        'edited'
     ];
 
     public function task(){

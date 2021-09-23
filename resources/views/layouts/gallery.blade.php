@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="container">
-    @for ($i = 0; $i < count($tasks); $i+=3)
+    <div class="container-fluid">
         <div class="row">
-            @for ($j = 0; ($j < 3 && $i + $j < count($tasks));  $j++)
-                <div class="col">
-                    {{$tasks[$j+$i]->user->name}}
-                    <img src="{{ asset($tasks[$j+$i]->image_path) }}" class="img-fluid rounded"> 
-                    {{$tasks[$j+$i]->task->description}}
-                </div>
-            @endfor
-        </div>
-    @endfor
-    </div>
+            @foreach ($tasks as $task)
+                <div class="col-12 col-md-4 col-lg-3 mb-4">
+                    <div class="card mx-auto text-center">
 
-   
+                        <img class="card-img-top" src="{{asset($task->image_path ?? 'storage/S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png')}}">
+
+                        <div class="card-body">
+                            <h2 class="card-title">{{$task->task->description}}</h2>
+                        </div>
+                    </div>
+                </div>   
+            @endforeach
+        </div>
+    </div>
 @endsection

@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 class TaskCompleteController extends Controller
 {
     //
-    public function index()
+    public function gallery()
     {
-        $tasks = TaskComplete::where('image_path', '!=', null)->get();
+        $tasks = TaskComplete::where('edited', '=', true)->get();
         return view('layouts.gallery', ["tasks" => $tasks]);
     }
 

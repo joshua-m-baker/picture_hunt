@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [TaskController::class, 'index']); #->middleware(['auth']);
-Route::get('/tasks/{id}', [TaskCompleteController::class, 'show']);
-Route::get('/tasks', [TaskCompleteController::class, 'tasks']);
-Route::get('/gallery', [TaskCompleteController::class, 'index']);
+Route::get('/', [TaskCompleteController::class, 'gallery']); #->middleware(['auth']);
+Route::get('/tasks', [TaskCompleteController::class, 'tasks'])->middleware(['auth']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/users', [UserController::class, 'users'])->middleware(['auth']);
+
+// Route::get('/gallery', [TaskCompleteController::class, 'index']);
 
 Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 
