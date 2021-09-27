@@ -20,20 +20,19 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [TaskController::class, 'index']);
-Route::get('/gallery', [TaskCompleteController::class, 'gallery']); 
+Route::get('/gallery', [TaskController::class, 'gallery']); 
+
 Route::get('/tasks', function () {
-    return redirect()->route('user_tasks', ['id' => Auth::id()]);
+    return redirect()->route('user_cards', ['id' => Auth::id()]);
 })->middleware(['auth']);
-Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('show_tasks');
+Route::get('/tasks/{id}', [TaskController::class, 'showByTask'])->name('task_cards');
+
 Route::get('/users', [Usercontroller::class, 'index']);
-Route::get('/users/{id}', [Usercontroller::class, 'show'])->name('user_tasks');
+Route::get('/users/{id}', [TaskController::class, 'showByUser'])->name('user_cards');
 
-// Route::get('/users', [UserController::class, 'users'])->middleware(['auth']);
 
-// Route::get('/gallery', [TaskCompleteController::class, 'index']);
 Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post')->middleware('optimizeImages');
 Route::post('image-rotate', [ ImageUploadController::class, 'imageRotate' ])->name('image.rotate.post');
-// Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post')->middleware('optimizeImages');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

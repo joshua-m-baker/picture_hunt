@@ -22,14 +22,6 @@ class Usercontroller extends Controller
         return view('layouts.users', ["users" => $users]);
     }
 
-    public function show($user_id)
-    {
-        //
-        $user = User::find($user_id);
-        return view('layouts.userTasks', ["user" => $user]);
-        // return view('layouts.userTasks', ["user" => Auth::User()]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
