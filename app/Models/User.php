@@ -40,5 +40,23 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+    ];    
+    
+    public function tasks() 
+    {
+        return $this->hasMany(TaskComplete::class);
+    }
+
+    public function getTaskCompleteCount()
+    {
+        $tasks = $this->tasks();
+        return $tasks->where('image_path', '!=', null)->count();
+    }
+
+    public function getTaskPercentage()
+    {
+        $task_count = $this->tasks->count();
+        if ($task_count == 0) return 0;
+        return ceil(($this->getTaskCompleteCount() / $this->tasks->count())*100);
+    }
 }

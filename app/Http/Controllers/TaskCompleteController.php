@@ -19,10 +19,10 @@ class TaskCompleteController extends Controller
 
     public function tasks()
     {
-        $user_id = Auth::id();
-        $taskCompletes = TaskComplete::where('user_id', $user_id)->get();
+        //$user_id = Auth::id();
+        //$taskCompletes = TaskComplete::where('user_id', $user_id)->get();
 
-        return view('layouts.userTasks', ["tasks" => $taskCompletes]);
+        return view('layouts.userTasks', ["user" => Auth::User()]);
     }
 
     public function show($id)

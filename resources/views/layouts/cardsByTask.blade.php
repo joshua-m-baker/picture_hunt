@@ -12,28 +12,22 @@
         </div>
     @endif
 
-    <h2 class="text-center">{{$user->name}}</h2>
-    <div class="d-flex justify-content-center mb-5">
-    {{-- TODO Format better --}}
-        <div class="progress w-50">
-            <div class="progress-bar justify-content-center" role="progressbar" style="width: {{$user->getTaskPercentage()}}%;" aria-valuenow="{{$user->getTaskPercentage()}}" aria-valuemin="0" aria-valuemax="100">{{$user->getTaskCompleteCount()}} / {{$user->tasks->count()}}</div>
-        </div>
-    </div>
-
+    <h2 class="text-center py-4">{{$main_task->description}}</h2>
+    
     <div class="container-fluid">
         <div class="row">
     
-            @foreach ($user->tasks as $task)
+            @foreach ($main_task->taskCompletes as $task)
                 <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="card mx-auto text-center" id={{"task".$task->task->id}}>
 
                         <img class="card-img-top" src="{{asset($task->image_path ?? 'storage/S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png')}}">
 
                         <div class="card-body">
-                            <h2 class="card-title">{{$task->task->description}}</h2>
+                            <h2 class="card-title">{{$task->user->name}}</h2>
 
                             @auth
-                                @if ($user->id == Auth::id())
+                                @if ($task->user->id == Auth::id())
                                     <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="file" name="image" onchange="this.form.submit()" /> 

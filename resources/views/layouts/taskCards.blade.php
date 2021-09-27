@@ -12,18 +12,10 @@
         </div>
     @endif
 
-    <h2 class="text-center">{{$user->name}}</h2>
-    <div class="d-flex justify-content-center mb-5">
-    {{-- TODO Format better --}}
-        <div class="progress w-50">
-            <div class="progress-bar justify-content-center" role="progressbar" style="width: {{$user->getTaskPercentage()}}%;" aria-valuenow="{{$user->getTaskPercentage()}}" aria-valuemin="0" aria-valuemax="100">{{$user->getTaskCompleteCount()}} / {{$user->tasks->count()}}</div>
-        </div>
-    </div>
-
     <div class="container-fluid">
         <div class="row">
     
-            @foreach ($user->tasks as $task)
+            @foreach ($tasks as $task)
                 <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="card mx-auto text-center" id={{"task".$task->task->id}}>
 
@@ -33,7 +25,7 @@
                             <h2 class="card-title">{{$task->task->description}}</h2>
 
                             @auth
-                                @if ($user->id == Auth::id())
+                                @if ($task->user->id == Auth::id())
                                     <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input class="form-control" type="file" name="image" onchange="this.form.submit()" /> 
