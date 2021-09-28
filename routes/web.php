@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [TaskController::class, 'index']);
-Route::get('/gallery', [TaskController::class, 'gallery']); 
+Route::get('/gallery', [TaskController::class, 'gallery'])->name('gallery'); 
 
 Route::get('/tasks', function () {
     return redirect()->route('user_cards', ['id' => Auth::id()]);
-})->middleware(['auth']);
+})->middleware(['auth'])->name('my_tasks');
 Route::get('/tasks/{id}', [TaskController::class, 'showByTask'])->name('task_cards');
 
-Route::get('/users', [Usercontroller::class, 'index']);
+Route::get('/users', [Usercontroller::class, 'index'])->name('users');
 Route::get('/users/{id}', [TaskController::class, 'showByUser'])->name('user_cards');
 
 
@@ -41,6 +41,6 @@ Route::post('image-rotate', [ ImageUploadController::class, 'imageRotate' ])->na
 
 require __DIR__.'/auth.php';
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

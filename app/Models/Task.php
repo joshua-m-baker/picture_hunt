@@ -22,4 +22,10 @@ class Task extends Model
     {
         return $this->hasMany(TaskComplete::class);
     }
+
+    public function getIsCompletedByUser($user_id)
+    {
+        return $this->taskCompletes()->where('user_id', '=', $user_id)->first()->image_path != null; 
+
+    }
 }

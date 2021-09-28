@@ -14,13 +14,26 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
+
+        // ["Pigeon"],
+        // ["A ridiculous sign"],
+        // ["A butterfly"],
+        // ["Bird in a tree"],
+        // ["Pumpkins (the more the better)"],
+
         $tasks = [
-            ["Skeleton"],
-            ["A fish"],
-            ["The larget 17 you can find"],
-            ["Food"],
-            ["Testing 1"],
-            ["Testing 2"]
+            ["Fall foliage"],
+            ["A cool rock"],
+            ["A picture with someone from your car"],
+            ["Water"],
+            ["Game champion"],
+            ["An animal"], 
+            ["Delicious food"],
+            ["Target"],
+            ["Something halloweeny"],
+            ["A picture with someone not from your car"], 
+            ["Group picture (doesn't have to be the full group)"],
+            ["Free Space (anything you want!)"], 
         ]; 
 
         foreach ($tasks as $task) {

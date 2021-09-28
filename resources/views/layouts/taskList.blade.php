@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="col-12 col-lg-6 mx-auto">
-        <div class="card text-center">
+    <div class="col-12 col-lg-6 mx-auto text-center">
+        <div class="card">
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Task</th>
+                    <th scope="col">Duluth 2021 Scavenger Hunt</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,7 +18,8 @@
                         {{$task->description}}
                     </a>
                     @auth
-                        @if (in_array(Auth::id(), $task->taskCompletes->pluck('user_id')->toArray()))
+                        {{-- @if (in_array(Auth::id(), $task->taskCompletes->pluck('user_id')->toArray())) --}}
+                        @if ($task->getIsCompletedByUser(Auth::id()))
                             <i class="fas fa-check"></i>
                         @endif
                     @endauth
@@ -28,6 +29,18 @@
                 </tbody>
             </table>
         </div>
+
+        <div>
+
+        </div>
+        <h2>Rules</h2>
+
+        <ul>
+            <li>No sharing pictures (take you own)! </li>
+            <li>You can replace photos, the most recent will be shown </li>
+        </ul>
     </div>   
 </div>
+
+
 @endsection
