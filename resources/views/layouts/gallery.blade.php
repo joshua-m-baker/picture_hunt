@@ -11,8 +11,10 @@
                         <img class="card-img-top img-responsive" src="{{asset($task->image_path ?? 'storage/S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png')}}">
 
                         <div class="card-body">
-                            <h2 class="card-title">{{$task->task->description}}</h2>
-                            <p><small>{{$task->user->name}}</small></p> 
+                            {{-- <h2 class="card-title">{{$task->task->description}}</h2> --}}
+                            {{-- <p><small>{{$task->user->name}}</small></p>  --}}
+                            <h2 class="card-title">{{$task->user->name}}</h2>
+                            <p><small>{{$task->task->description}}</small></p> 
                         </div>
                     </div>
                 </div>   

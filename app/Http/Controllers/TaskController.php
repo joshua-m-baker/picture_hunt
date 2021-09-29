@@ -30,7 +30,8 @@ class TaskController extends Controller
 
     public function showByTask($task_id)
     {
+        $task_count = Task::count();
         $task = Task::find($task_id);
-        return view('layouts.cardsByTask', ["main_task" => $task]);
+        return view('layouts.cardsByTask', ["main_task" => $task, "task_count" => $task_count]);
     }
 }

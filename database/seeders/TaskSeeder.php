@@ -27,18 +27,30 @@ class TaskSeeder extends Seeder
             ["A picture with someone from your car"],
             ["Water"],
             ["Game champion"],
+
             ["An animal"], 
             ["Delicious food"],
             ["Target"],
             ["Something halloweeny"],
             ["A picture with someone not from your car"], 
-            ["Group picture (doesn't have to be the full group)"],
-            ["Free Space (anything you want!)"], 
+
+            ["Group picture", "(doesn't have to be the full group)"],
+            ["A plant/ mushroom"], 
+            ["Someone else laughing", "(a candid picture)"], 
+            ["Something cheesy"], 
+            ["Something someone else will enjoy"],
+
+            ["Your favorite color", "(something that is that color)"],
+            ["Action photo"],
+            ["Trail picture"], 
+            ["Fish"],
+            ["Free Space", "(anything you want!)"], 
         ]; 
 
         foreach ($tasks as $task) {
             Task::create([
                 'description' => $task[0],
+                'helper_text' => $task[1] ?? null
             ]);  
         }
     }

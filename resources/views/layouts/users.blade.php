@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             @foreach ($users as $user)
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
+                <div class="col-12 col-md-4 col-lg-3 my-2">
                     <a href="/users/{{$user->id}}">
                     
                     <div class="card mx-auto text-center">

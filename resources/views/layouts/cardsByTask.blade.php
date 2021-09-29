@@ -11,12 +11,36 @@
             </ul>
         </div>
     @endif
-
-    <h2 class="text-center py-4">{{$main_task->description}}</h2>
     
     <div class="container-fluid">
+        <div class="card mx-auto col-12 col-lg-6 my-2">
+
+            <div class="card-body text-center mx-auto ">
+
+
+                <div class="row">
+                <h2 class="card-title">
+                @if ($main_task->id > 1)
+                    <a href="{{route('task_cards', $main_task->id-1)}}"><i class="fas fa-arrow-left"></i></a>                   
+                @endif
+
+                {{$main_task->description}}
+
+                @if ($main_task->id < $task_count)
+                    <a href="{{route('task_cards', $main_task->id+1)}} "><i class="fas fa-arrow-right"></i></a>                   
+                @endif
+                </h2>
+                </div>
+
+                <div class="row">
+
+                    <small>{{$main_task->helper_text}}</small>
+                </div>
+
+            </div>
+        </div>
+
         <div class="row">
-    
             @foreach ($main_task->taskCompletes as $task)
                 <div class="col-12 col-md-4 col-lg-3 mb-4">
                     <div class="card mx-auto text-center" id={{"task".$task->task->id}}>
@@ -24,7 +48,8 @@
                         <img class="card-img-top" src="{{asset($task->image_path ?? 'storage/S2kSw7x6rrBlWzsYybbDlnIK7qVMm7lv4IYoPJyz.png')}}">
 
                         <div class="card-body">
-                            <h2 class="card-title">{{$task->user->name}}</h2>
+                            {{-- <h2 class="card-title">{{$task->user->name}}</h2> --}}
+                            <h2 class="card-title">{{$task->user->first_name}}</h2>
 
                             @auth
                                 @if ($task->user->id == Auth::id())

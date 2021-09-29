@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasMany(TaskComplete::class);
     }
 
+    public function getFirstNameAttribute()
+    {
+        return explode(" ", $this->name)[0];
+    }
+
     public function getTaskCompleteCount()
     {
         $tasks = $this->tasks();
